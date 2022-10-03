@@ -19,19 +19,18 @@ class Room {
   constructor(name, power) {
     this.name = name;
     this.power = power;
-    this.connect = false;
   }
+  // метод, который определяет прибор как включенный
+  connected = function () {
+    console.log(`${this.name} connected to the network`);
+    this.connect = true;
+};
+  // метод, который определяет прибор как выключеный
+  unconnected = function () {
+    console.log(`${this.name} offline`);
+    this.connect = false;
+};
 }
-
-// создаем методы родительского класса
-Room.prototype.connected = function () {
-  console.log(`${this.name} connected to the network`);
-  this.connect = true;
-};
-Room.prototype.unconnected = function () {
-  console.log(`${this.name} offline`);
-  this.connect = false;
-};
 
 // создаем первый дочерний конструктор класса Room
 class Lamp extends Room {
@@ -42,7 +41,7 @@ class Lamp extends Room {
   }
 }
 
-// создаем конструктор дочернего объекта
+// создаем экземпляр дочернего объекта
 const tableLamp = new Lamp("Table lamp", "Xiaomi", 5, "LED");
 
 // создаем метод дочернего класса в зависимости от родительского метода
@@ -72,7 +71,7 @@ class TV extends Room {
   }
 }
 
-// создаем конструктор дочернего объекта
+// создаем экземпляр дочернего объекта
 const television = new TV("Television", "Samsung", 200, 80);
 
 television.status = function () {
